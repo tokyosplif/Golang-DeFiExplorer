@@ -13,4 +13,4 @@ go.work.sum
 
 .idea
 
-scripts/.env
+.env
