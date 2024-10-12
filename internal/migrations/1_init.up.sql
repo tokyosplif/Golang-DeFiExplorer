@@ -1,0 +1,69 @@
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+CREATE TABLE IF NOT EXISTS wallets (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    balance NUMERIC(18, 8) DEFAULT 0.0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+CREATE TABLE IF NOT EXISTS addresses (
+    id SERIAL PRIMARY KEY,
+     wallet_id INT REFERENCES wallets(id) ON DELETE CASCADE,
+    address VARCHAR(42) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+CREATE TABLE user_private_keys (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    private_key VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS blocks (
+    id SERIAL PRIMARY KEY,
+    hash VARCHAR(255) NOT NULL UNIQUE,
+    previous_hash VARCHAR(255) NOT NULL,
+    parent_hash VARCHAR(255),
+    block_number INTEGER NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE IF NOT EXISTS transactions (
+    id SERIAL PRIMARY KEY,
+    time TIMESTAMP NOT NULL,
+    block_id BIGINT NOT NULL,
+    hash VARCHAR(255) NOT NULL UNIQUE,
+    size INT NOT NULL,
+    weight INT NOT NULL,
+    is_coinbase BOOLEAN NOT NULL,
+    fee BIGINT NOT NULL,
+    fee_usd FLOAT NOT NULL,
+    details JSONB,
+    inputs JSONB NOT NULL,
+    outputs JSONB NOT NULL,
+    signatures BYTEA NOT NULL,
+    required_sigs INT NOT NULL,
+    "from" VARCHAR(255) NOT NULL,
+    "to" VARCHAR(255) NOT NULL,
+    value VARCHAR(255) NOT NULL,
+    user_id BIGINT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE transactions (
+    id SERIAL PRIMARY KEY,
+    from_address VARCHAR(255) NOT NULL,
+    to_address VARCHAR(255) NOT NULL,
+    value VARCHAR(255) NOT NULL,
+    signatures JSONB,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+

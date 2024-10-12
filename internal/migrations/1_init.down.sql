@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS blocks;
+DROP TABLE IF EXISTS addresses;
+DROP TABLE IF EXISTS wallets;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS user_private_keys
