@@ -1,10 +1,13 @@
 package models
 
+import "time"
+
 type Block struct {
 	Id           int64
-	Height       int64
 	Hash         string
 	PreviousHash string
-	Timestamp    int64
+	ParentHash   string
+	BlockNumber  int64
+	CreatedAt    time.Time
 	Transactions []Transaction
 }
