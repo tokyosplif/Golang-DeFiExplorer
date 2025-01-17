@@ -8,7 +8,7 @@ import (
 )
 
 type EthereumConfig struct {
-	RPCURL string // URL для подключения к Ethereum RPC
+	RPCURL string 
 }
 
 func LoadConfig() (*EthereumConfig, error) {
