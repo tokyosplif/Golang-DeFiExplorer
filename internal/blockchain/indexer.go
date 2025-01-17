@@ -1,8 +1,8 @@
 package blockchain
 
 import (
-	"Golang-DeFiExplorer/internal/models" // Импортируем вашу модель
-	"database/sql"                        // Импортируем пакет базы данных
+	"Golang-DeFiExplorer/internal/models" 
+	"database/sql"                        
 	"encoding/json"
 	"io"
 	"log"
@@ -21,7 +21,7 @@ func NewIndexer(database *sql.DB) *Indexer {
 }
 
 func (i *Indexer) FetchLatestBlock() {
-	url := os.Getenv("ETHEREUM_RPC_URL") // Загрузка URL из .env
+	url := os.Getenv("ETHEREUM_RPC_URL") 
 	if url == "" {
 		log.Fatal("ETHEREUM_RPC_URL не задан в переменных окружения")
 	}
