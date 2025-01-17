@@ -136,7 +136,7 @@ func (i *Indexer) IndexBlock(block models.Block) {
 		return
 	}
 
-	query := `
+       query := `
     INSERT INTO blocks (hash, previous_hash, block_number)
     VALUES ($1, $2, $3)
     RETURNING id;`
