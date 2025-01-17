@@ -32,7 +32,7 @@ func (m *Monitor) Start() {
 func (m *Monitor) checkForNewBlocks() {
 	log.Println("Checking for new blocks...")
 
-	lastBlock, err := GetLatestBlock(m.blockchainURL) // Здесь вызываем функцию
+	lastBlock, err := GetLatestBlock(m.blockchainURL)
 	if err != nil {
 		log.Printf("Ошибка при получении последнего блока: %v", err)
 		return
