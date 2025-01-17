@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"Golang-DeFiExplorer/internal/db" // Импортируйте пакет для доступа к базе данных
+	"Golang-DeFiExplorer/internal/db" 
 	"Golang-DeFiExplorer/internal/models"
 	"Golang-DeFiExplorer/internal/repository"
 	"encoding/json"
@@ -21,9 +21,9 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	dbInstance := db.GetDBInstance() // Получаем экземпляр базы данных
+	dbInstance := db.GetDBInstance() 
 
-	if err := repository.SaveUser(dbInstance, &user); err != nil { // Передаем dbInstance
+	if err := repository.SaveUser(dbInstance, &user); err != nil { 
 		http.Error(w, "Ошибка при сохранении пользователя: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
