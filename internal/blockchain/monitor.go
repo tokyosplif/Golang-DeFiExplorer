@@ -37,7 +37,6 @@ func (m *Monitor) checkForNewBlocks() {
 		log.Printf("Ошибка при получении последнего блока: %v", err)
 		return
 	}
-
 	m.indexer.IndexBlock(lastBlock)
 }
 
@@ -63,7 +62,7 @@ func GetLatestBlock(blockchainURL string) (models.Block, error) {
 	if err := json.NewDecoder(resp.Body).Decode(&blockResult); err != nil {
 		return models.Block{}, err
 	}
-
+	
 	return blockResult.Result, nil
 }
 
