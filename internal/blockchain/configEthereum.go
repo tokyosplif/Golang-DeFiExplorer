@@ -3,7 +3,6 @@ package blockchain
 import (
 	"log"
 	"os"
-
 	"github.com/joho/godotenv"
 )
 
