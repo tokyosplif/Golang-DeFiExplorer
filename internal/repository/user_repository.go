@@ -22,7 +22,7 @@ func SaveUser(db *sql.DB, user *models.User) error {
 }
 
 func GetUserPrivateKeys(db *sql.DB, userID int64) ([]*ecdsa.PrivateKey, error) {
-	var privateKeys [][]byte // Храним ключи в виде среза байтов
+	var privateKeys [][]byte 
 	query := `SELECT private_key FROM user_private_keys WHERE user_id = $1`
 
 	rows, err := db.Query(query, userID)
